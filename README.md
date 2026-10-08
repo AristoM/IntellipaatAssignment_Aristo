@@ -11,6 +11,10 @@ Senior Mobile App Developer – Technical Assignment (6–8+ Years)
 ### Completed Lesson
 ![Completed Lesson](screenshots/completed-course.png)
 
+## Demo Video
+
+[▶️ Intellipaat Assignment Demo](demo/IntellipaatAssignment-demo.mp4)
+
 ## 1. Architecture: Why Clean Architecture + MVVM + UDF?
 We implemented **Clean Architecture with MVVM (Model-View-ViewModel)** and **Unidirectional Data Flow (UDF)**:
 - **UI Layer (Jetpack Compose)**: Declarative, stateless composables observing immutable `StateFlow<DashboardUiState>`. Events (`onCourseClick`, `onToggleLesson`, `onRefresh`) propagate upward as lambdas.
