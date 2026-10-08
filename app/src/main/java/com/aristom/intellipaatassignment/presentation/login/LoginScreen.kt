@@ -24,8 +24,8 @@ fun LoginScreen(
     onLoginClick: (String, String) -> Unit,
     onLoginSuccess: () -> Unit
 ) {
-    var email by remember { mutableStateOf("alex.developer@android.com") }
-    var password by remember { mutableStateOf("composeDev2025") }
+    var email by remember { mutableStateOf("aristo@android.com") }
+    var password by remember { mutableStateOf("aristo@123") }
     var passwordVisible by remember { mutableStateOf(false) }
 
     LaunchedEffect(uiState) {

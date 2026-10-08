@@ -41,10 +41,17 @@ class CourseRepositoryImpl(
     override suspend fun refreshCourses(): Result<Unit> {
         return try {
             val remoteCourses = apiService.fetchCourses()
-            val entities = remoteCourses.map { CourseEntity.fromDomain(it) }
-            
-            // Upsert into Room Database
-            courseDao.insertCourses(entities)
+            val existingCourses = courseDao.getAllCourses()
+
+            val entities = remoteCourses.map { remoteCourse ->
+                val existingCourse = existingCourses.find { it.id == remoteCourse.id }
+
+                CourseEntity.fromDomain(remoteCourse).copy(
+                    progress = existingCourse?.progress ?: remoteCourse.progress
+                )
+            }
+
+            courseDao.syncCoursesPreservingProgress(entities)
             Result.success(Unit)
         } catch (e: IOException) {
             // Offline / Network error: gracefully preserve existing Room cache!
